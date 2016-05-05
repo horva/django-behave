@@ -169,6 +169,8 @@ class DjangoBehaveTestCase(LiveServerTestCase):
         sys.argv = old_argv
         self.behave_config.browser = our_opts["browser"]
 
+        if hasattr(self, 'client'):
+            self.behave_config.client = self.client
         self.behave_config.server_url = self.live_server_url  # property of LiveServerTestCase
         self.behave_config.paths = self.get_features_dir()
         self.behave_config.format = self.behave_config.format if self.behave_config.format else ['pretty']
